@@ -1,0 +1,40 @@
+# Python (Django) ignores
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.db
+*.sqlite3
+venv/
+*.log
+
+# Django migrations and database files
+migrations/
+db.sqlite3
+
+# Environment variables files
+.env
+.env.*
+
+# Static files (can be regenerated)
+static/
+
+# Media files (user-uploaded files)
+media/
+
+# Next.js ignores
+node_modules/
+.next/
+*.log
+
+# IDE/editor files
+.vscode/
+.idea/
+*.swp
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Python virtual environment folder (if outside project)
+venv/
