@@ -143,3 +143,5 @@ REST_FRAMEWORK = {
         'users.auth.NextAuthJWTAuthentication'
     ]
 }
+
+AUTH_USER_MODEL = 'users.CustomUser'
