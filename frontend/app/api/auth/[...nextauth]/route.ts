@@ -1,6 +1,6 @@
-import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth from 'next-auth'
+import GoogleProvider from 'next-auth/providers/google'
+import CredentialsProvider from 'next-auth/providers/credentials'
 
 const handler = NextAuth({
   providers: [
@@ -9,28 +9,28 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
     CredentialsProvider({
-      name: "Credentials",
+      name: 'Credentials',
       credentials: {
-        username: { label: "Username", type: "text" },
-        password: { label: "Password", type: "password" },
+        username: { label: 'Username', type: 'text' },
+        password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const res = await fetch("http://localhost:8000/users/login/", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
+        const res = await fetch(`${process.env.API_URL}/users/login/`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             username: credentials?.username,
             password: credentials?.password,
           }),
-        });
+        })
 
-        const user = await res.json();
+        const user = await res.json()
 
         if (res.ok && user) {
           return user; 
         }
 
-        return null; 
+        return null
       }
     })
   ],
@@ -46,15 +46,15 @@ const handler = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) token.user = user; 
-      return token;
+      return token
     },
     async session({ session, token }) {
-      if (token?.user) session.user = token.user; 
-      return session;
+      if (token?.user) session.user = token.user;
+      return session
     },
   },
 
   secret: process.env.NEXTAUTH_SECRET, 
-});
+})
 
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST }
