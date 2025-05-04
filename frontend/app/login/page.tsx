@@ -15,7 +15,7 @@ export default function Login(){
     const response = await signIn('google',{ callbackUrl: '/' })
   }
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
     const response = await signIn('credentials', {
