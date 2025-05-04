@@ -2,6 +2,7 @@ from rest_framework.authentication import BaseAuthentication
 from rest_framework.exceptions import AuthenticationFailed
 from django.contrib.auth import get_user_model
 import jwt
+import os
 
 class NextAuthJWTAuthentication(BaseAuthentication):
     def authenticate(self, request):
@@ -11,7 +12,7 @@ class NextAuthJWTAuthentication(BaseAuthentication):
 
         token = auth_header.split(' ')[1]
         try:
-            payload = jwt.decode(token, "YOUR_NEXTAUTH_SECRET", algorithms=["HS256"])
+            payload = jwt.decode(token, os.environ.get('NEXTAUTH_SECRET') , algorithms=["HS256"])
         except jwt.ExpiredSignatureError:
             raise AuthenticationFailed('Token expired')
         except jwt.InvalidTokenError:
