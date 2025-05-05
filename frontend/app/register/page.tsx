@@ -23,7 +23,7 @@ export default function Register(){
     }
 
     try{
-      const response = await axios.post(`${process.env.API_URL}users/register/`, {
+      const response = await axios.post(`${process.env.API_URL}/users/register/`, {
         username: username, 
         email: email,
         first_name: firstName,
