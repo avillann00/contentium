@@ -12,7 +12,7 @@ export default function Login(){
   const router = useRouter()
 
   const handleGoogleLogin = async () => {
-    const response = await signIn('google',{ callbackUrl: '/' })
+    const response = await signIn('google',{ callbackUrl: '/dashboard' })
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -26,7 +26,7 @@ export default function Login(){
 
     if(response?.ok){
       alert('Login success.')
-      router.push('/')
+      router.push('/dashboard')
     }
     else{
       alert('Login error.')
