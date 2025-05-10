@@ -10,9 +10,9 @@ export default function Layout({ children }: { children: ReactNode }){
       <div 
         className='bg-purple-100 text-black items-center w-full flex flex-row h-16 px-4 shadow-md rounded-lg justify-between fixed top-0 z-50'
       >
-        <image className='w-1/3' alt='Home' />
+        <image className='w-1/3' />
         <h1 className='w-1/3 text-center text-2xl'>Contentium</h1>
-        <image className='w-1/3' alt='Profile' />
+        <image className='w-1/3' />
       </div>
 
       {/* dashboard content */}
