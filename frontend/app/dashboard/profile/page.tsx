@@ -30,6 +30,14 @@ export default function Profile(){
     )
   }
 
+  if(!user){
+    return(
+      <div className='w-screen h-screen flex items-center justify-center'>
+        <h1>User info not available</h1>
+      </div>
+    )
+  }
+
   return(
     <div className='w-screen h-screen bg-blue-50 flex flex-col items-center gap-4'>
       
