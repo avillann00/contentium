@@ -27,15 +27,15 @@ export default function Profile(){
 
       <div className='text-black text-center flex flex-col gap-4'>
         <h1 className='text-xl'>Name</h1>
-        {session?.user.first_name && <h1 className='' >{session?.user.first_name}</h1>}
-        {session?.user.last_name && <h1 className='' >{session?.user.last_name}</h1>}
-        {session?.user.name && <h1 className='' >{session?.user.name}</h1>}
+        {session?.user?.first_name && <h1 className='' >{session?.user?.first_name}</h1>}
+        {session?.user?.last_name && <h1 className='' >{session?.user?.last_name}</h1>}
+        {session?.user?.name && <h1 className='' >{session?.user?.name}</h1>}
 
         <h1 className='text-xl'>Email</h1>
-        {session?.user.email && <h1 className='' >{session?.user.email}</h1>}
+        {session?.user?.email && <h1 className='' >{session?.user?.email}</h1>}
 
-        {session?.user.username && <h1 className='text-xl'>Username</h1>}
-        {session?.user.username && <h1 className='' >{session?.user.username}</h1>}
+        {session?.user?.username && <h1 className='text-xl'>Username</h1>}
+        {session?.user?.username && <h1 className='' >{session?.user?.username}</h1>}
       </div>
 
       <button 
