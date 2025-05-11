@@ -3,9 +3,19 @@
 import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 
+type ExtendedUser = {
+  name?: string | null
+  email?: string | null
+  first_name?: string | null
+  last_name?: string | null
+  username?: string | null
+}
+
 export default function Profile(){
   const { data: session, status } = useSession()
   const router = useRouter()
+
+  const user = session?.user as ExtendedUser | undefined
 
   if(!session){
     return(
@@ -27,15 +37,15 @@ export default function Profile(){
 
       <div className='text-black text-center flex flex-col gap-4'>
         <h1 className='text-xl'>Name</h1>
-        {session?.user?.first_name && <h1 className='' >{session?.user?.first_name}</h1>}
-        {session?.user?.last_name && <h1 className='' >{session?.user?.last_name}</h1>}
-        {session?.user?.name && <h1 className='' >{session?.user?.name}</h1>}
+        {user.first_name && <h1 className='' >{user.first_name}</h1>}
+        {user.last_name && <h1 className='' >{user.last_name}</h1>}
+        {user.name && <h1 className='' >{user.name}</h1>}
 
         <h1 className='text-xl'>Email</h1>
-        {session?.user?.email && <h1 className='' >{session?.user?.email}</h1>}
+        {user.email && <h1 className='' >{user.email}</h1>}
 
-        {session?.user?.username && <h1 className='text-xl'>Username</h1>}
-        {session?.user?.username && <h1 className='' >{session?.user?.username}</h1>}
+        {user.username && <h1 className='text-xl'>Username</h1>}
+        {user.username && <h1 className='' >{user.username}</h1>}
       </div>
 
       <button 
