@@ -1,8 +1,12 @@
 'use client'
 
 import { ReactNode } from 'react'
+import { FaUser } from 'react-icons/fa'
+import { useRouter } from 'next/navigation'
 
 export default function Layout({ children }: { children: ReactNode }){
+  const router = useRouter()
+
   return(
     <div className='bg-blue-50'>
 
@@ -12,7 +16,7 @@ export default function Layout({ children }: { children: ReactNode }){
       >
         <image className='w-1/3' />
         <h1 className='w-1/3 text-center text-2xl'>Contentium</h1>
-        <image className='w-1/3' />
+        <FaUser size={24} color='gray' className='w-1/3' onClick={() => router.push('/dashboard/profile')} />
       </div>
 
       {/* dashboard content */}
