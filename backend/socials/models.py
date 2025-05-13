@@ -8,7 +8,6 @@ class Connection(models.Model):
         ('tiktok', 'TikTok'),
         ('youtube', 'Youtube'),
         ('x', 'X'),
-        ('twitter', 'Twitter')
     ]
 
     id = models.BigAutoField(primary_key=True)
