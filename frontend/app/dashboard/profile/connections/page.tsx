@@ -1,6 +1,5 @@
 'use client'
 
-import { FaTwitter } from 'react-icons/fa'
 import { SiX } from 'react-icons/si'
 import { FaYoutube } from 'react-icons/fa'
 import { SiTiktok } from 'react-icons/si'
@@ -9,7 +8,6 @@ import { FaFacebook } from 'react-icons/fa'
 
 export default function Connections(){
   const connections = [
-    { name: 'Twitter', icon: <FaTwitter /> },
     { name: 'Youtube', icon: <FaYoutube /> },
     { name: 'TikTok', icon: <SiTiktok /> },
     { name: 'X', icon: <SiX /> },
@@ -19,7 +17,7 @@ export default function Connections(){
 
   const mappedConnections = connections.map((connection) => (
     <button 
-      className='text-black border border-black rounded-lg shadow-md px-4 py-4 flex flex-col items-center bg-white' 
+      className='text-black border border-black rounded-lg shadow-md px-4 py-4 flex flex-col items-center bg-white min-h-1/4 min-w-1/4' 
       key={connection.name}
     >
       {connection.name}
