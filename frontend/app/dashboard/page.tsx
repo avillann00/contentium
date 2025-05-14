@@ -4,6 +4,7 @@ import { useSession, signOut } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
+import SectionCard  from '../components/SectionCard'
 
 type Connection = {
   id: number,
@@ -53,23 +54,30 @@ export default function Dashboard(){
 
   const mappedConnections = connections?.map((connection) => (
     <section 
-      className='w-3/4 h-3/4 border border-black text-black rounded-lg px-2 py-2 shadow-md bg-gray-200' 
+      className='w-3/4 h-3/4 border border-black text-black rounded-lg px-2 py-2 shadow-md bg-gray-200 shrink-0 mb-4' 
       key={connection.id}
     >
-      <h1 className='text-center text-xl'>{connection.platform}</h1>
+      <SectionCard {...connection} />
     </section>
   ))
 
   return(
     <div className='min-w-screen min-h-screen bg-blue-50 flex flex-col'>
-      <h1 className='mt-30 text-2xl text-black text-center'>Dashboard</h1>
 
       {session ? (
         <div className='text-black flex flex-col items-center justify-center h-screen w-screen'>
 
-          <div className='flex flex-col w-full h-full items-center'>
-            {mappedConnections}
-          </div>
+          {connections.length > 0 ? 
+            (
+              <div className='flex flex-col w-3/4 h-full items-center overflow-y-auto'>
+                {mappedConnections}
+              </div>
+            ) : (
+              <div className='text-black text-5xl' onClick={() => router.push('/dashboard/profile/connections')}>
+                Connect your accounts to get started!
+              </div>
+            )
+          }
        </div>
       ) : (
         <div className='flex text-black justify-center items-center h-screen w-screen'>
