@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
-import jwt from 'jsonwebtoken'
+import * as jwt from 'jsonwebtoken'
 
 const handler = NextAuth({
   providers: [
