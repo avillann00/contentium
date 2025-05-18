@@ -7,9 +7,9 @@ export default function Home(){
 
   return(
     <div className='w-screen min-h-screen bg-blue-50 flex flex-col items-center pt-20'>
-      <nav className='h-16 px-4 fixed top-0 z-50 w-full shadow-md rounded-lg flex flex-row justify-between bg-white items-center'>
+      <nav className='h-16 px-4 fixed top-0 z-50 w-full shadow-md rounded-lg flex flex-row justify-between bg-purple-100 items-center'>
         <image className='w-1/3' />
-        <h1 className='w-1/3 text-black text-center text-2xl'>Contentium</h1>
+        <h1 className='w-1/3 text-black text-center text-2xl' onClick={() => router.push('/')}>Contentium</h1>
         <div className='w-1/3'>
           <button 
             className='text-black rounded-lg shadow-md border border-black p-2 bg-yellow-100' 
@@ -35,6 +35,13 @@ export default function Home(){
           It uses Django for the backend which is deployed using Heroku.
           For the database, it uses PostgreSQL which is hosted using Supabase.
         </p>
+      </section>
+
+      <section 
+        className='bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto text-black mt-10 hover:bg-green-200'
+        onClick={() => router.push('/pricing')}
+      >
+        View pricing
       </section>
 
       <section className='bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto text-black mt-10'>
