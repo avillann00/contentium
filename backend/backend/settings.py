@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'users',
-    'socials'
+    'socials',
+    'payments'
 ]
 
 MIDDLEWARE = [
@@ -149,3 +150,6 @@ REST_FRAMEWORK = {
 }
 
 AUTH_USER_MODEL = 'users.CustomUser'
+
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')
+STRIPE_WEBHOOK_SECRET = os.getenv('STRIPE_SECRET_WEBHOOK')
