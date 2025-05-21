@@ -9,6 +9,7 @@ type ExtendedUser = {
   first_name?: string | null
   last_name?: string | null
   username?: string | null
+  is_pro?: boolean | null
 }
 
 export default function Profile(){
