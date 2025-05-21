@@ -25,7 +25,7 @@ export default function Pro(){
   const [isPro, setIsPro] = useState(false)
 
   useEffect(() => {
-    setIsPro(user.is_pro)
+    setIsPro(user?.is_pro)
   }, [])
 
   const user = session?.user as ExtendedUser | undefined
