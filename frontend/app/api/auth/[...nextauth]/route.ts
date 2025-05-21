@@ -1,6 +1,6 @@
-import NextAuth from "next-auth";
-import GoogleProvider from "next-auth/providers/google";
-import CredentialsProvider from "next-auth/providers/credentials";
+import NextAuth from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
+import CredentialsProvider from 'next-auth/providers/credentials';
 import * as jwt from 'jsonwebtoken'
 
 const handler = NextAuth({
@@ -10,15 +10,15 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     }),
     CredentialsProvider({
-      name: "Credentials",
+      name: 'Credentials',
       credentials: {
-        username: { label: "Username", type: "text" },
-        password: { label: "Password", type: "password" },
+        username: { label: 'Username', type: 'text' },
+        password: { label: 'Password', type: 'password' },
       },
       async authorize(credentials) {
-        const res = await fetch("http://localhost:8000/users/login/", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/users/login/`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             username: credentials?.username,
             password: credentials?.password,
@@ -56,7 +56,6 @@ const handler = NextAuth({
           email: user.email,
         }
 
-        // Sign the JWT yourself with NEXTAUTH_SECRET
         token.accessToken = jwt.sign(payload, process.env.NEXTAUTH_SECRET!, {
           algorithm: 'HS256',
           expiresIn: '1h',

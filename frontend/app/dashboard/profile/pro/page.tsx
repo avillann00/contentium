@@ -22,8 +22,10 @@ export default function Pro(){
 
   const router = useRouter()
 
+  const [isPro, setIsPro] = useState(false)
+
   useEffect(() => {
-    alert(`val: ${user?.is_pro}`)
+    setIsPro(user.is_pro)
   }, [])
 
   const user = session?.user as ExtendedUser | undefined
@@ -33,7 +35,7 @@ export default function Pro(){
       return
     }
 
-    const { data } = await axios.post('http://localhost:8000/payments/stripe/create-checkout-session/', {}, {
+    const { data } = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/payments/stripe/create-checkout-session/`, {}, {
       headers: {
         Authorization: `Bearer ${session?.accessToken}`
       }
@@ -56,7 +58,7 @@ export default function Pro(){
         <>
           <h1 className='text-black text-center text-3xl mb-10'>Pro</h1>
           <div className='flex flex-col text-black items-center'>
-            {user?.is_pro ? (
+            {isPro ? (
               <h1>You are already a pro!</h1>
             ) : (
               <div className='flex flex-col items-center'>

@@ -37,7 +37,7 @@ export default function Dashboard(){
       console.log('Access Token:', session?.accessToken);
 
       try{
-        const response = await axios.get('http://localhost:8000/socials/connections', {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/socials/connections`, {
           headers: {
             Authorization: `Bearer ${session.accessToken}`
           }

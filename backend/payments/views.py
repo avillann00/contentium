@@ -20,7 +20,7 @@ class CreateCheckoutSessionView(APIView):
                 payment_method_types=['card'],
                 mode='subscription',
                 line_items=[{
-                    'price': 'price_1RQv6EGCGP7G1PYi4je9QNGP',
+                    'price': os.getenv('STRIPE_PRICE_ID'),
                     'quantity': 1,
                 }],
                 customer_email=request.user.email,
