@@ -56,7 +56,7 @@ export default function Pro(){
         <>
           <h1 className='text-black text-center text-3xl mb-10'>Pro</h1>
           <div className='flex flex-col text-black items-center'>
-            {user.is_pro ? (
+            {user?.is_pro ? (
               <h1>You are already a pro!</h1>
             ) : (
               <div className='flex flex-col items-center'>
