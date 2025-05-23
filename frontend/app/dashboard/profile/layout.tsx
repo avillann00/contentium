@@ -14,6 +14,7 @@ export default function Layout({ children }: { children: ReactNode }) {
         className='w-64 h-full border-r border-black flex flex-col items-start px-4 py-4 gap-4 bg-white mt-15 text-black'
       >
         <button onClick={() => router.push('/dashboard/profile')}>Profile</button>
+        <button onClick={() => router.push('/dashboard/profile/pro')}>Pro</button>
         <button onClick={() => router.push('/dashboard/profile/connections')}>Connections</button>
         <button onClick={() => router.push('/dashboard/profile/settings')}>Settings</button>
       </div>

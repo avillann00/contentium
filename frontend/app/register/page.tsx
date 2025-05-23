@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
 
-export default function Register(){
+export default function Register() {
   const router = useRouter()
 
   const [username, setUsername] = useState('')
@@ -14,6 +14,9 @@ export default function Register(){
   const [password, setPassword] = useState('')
   const [passwordConfirm, setPasswordConfirm] = useState('')
 
+  const [agreedToPrivacy, setAgreedToPrivacy] = useState(false)
+  const [agreedToTerms, setAgreedToTerms] = useState(false)
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
 
@@ -22,9 +25,14 @@ export default function Register(){
       return
     }
 
+    if(!agreedToPrivacy || !agreedToTerms){
+      alert('You must agree to both the Privacy Policy and Terms of Service.')
+      return
+    }
+
     try{
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/register/`, {
-        username: username, 
+      await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/users/register/`, {
+        username: username,
         email: email,
         first_name: firstName,
         last_name: lastName,
@@ -33,14 +41,14 @@ export default function Register(){
 
       alert('Registration successful.')
       router.push('/login')
-    }
-    catch(e){
+    } 
+    catch(error){
       alert('Registration error.')
-      console.error('Error registering user: ', e)
+      console.error('Error registering user: ', error)
     }
   }
 
-    return (
+  return(
     <div className='w-screen h-screen bg-blue-50 p-10 flex flex-col items-center gap-4'>
       <h1 className='mx-auto text-black text-3xl'>Register with your information then login.</h1>
 
@@ -97,10 +105,43 @@ export default function Register(){
           required
         />
 
+        <label className="flex items-center text-sm gap-2">
+          <input
+            type="checkbox"
+            checked={agreedToPrivacy}
+            onChange={(e) => setAgreedToPrivacy(e.target.checked)}
+            required
+          />
+          <span>
+            I agree to the{' '}
+            <a href="/privacy" target="_blank" className="underline text-blue-600 hover:text-blue-800">
+              Privacy Policy
+            </a>.
+          </span>
+        </label>
+
+        <label className="flex items-center text-sm gap-2">
+          <input
+            type="checkbox"
+            checked={agreedToTerms}
+            onChange={(e) => setAgreedToTerms(e.target.checked)}
+            required
+          />
+          <span>
+            I agree to the{' '}
+            <a href="/terms" target="_blank" className="underline text-blue-600 hover:text-blue-800">
+              Terms of Service
+            </a>.
+          </span>
+        </label>
+
         <button className='px-2 py-2 rounded-lg hover:bg-green-200' type='submit'>Register</button>
       </form>
 
-      <button className='mx-auto text-black hover:text-blue-700' onClick={() => router.push('/login')}>Have an account?</button>
+      <button className='mx-auto text-black hover:text-blue-700' onClick={() => router.push('/login')}>
+        Have an account?
+      </button>
     </div>
   )
 }
+

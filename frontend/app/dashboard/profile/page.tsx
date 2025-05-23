@@ -9,6 +9,7 @@ type ExtendedUser = {
   first_name?: string | null
   last_name?: string | null
   username?: string | null
+  is_pro?: boolean | null
 }
 
 export default function Profile(){
@@ -44,7 +45,7 @@ export default function Profile(){
       <h1 className='text-black text-3xl mt-15'>Profile</h1>
 
       <div className='text-black text-center flex flex-col gap-4'>
-        <h1 className='text-xl'>Name</h1>
+        {((user.first_name && user.last_name) || user.name) && <h1 className='text-xl'>Name</h1>}
         {user.first_name && <h1 className='' >{user.first_name}</h1>}
         {user.last_name && <h1 className='' >{user.last_name}</h1>}
         {user.name && <h1 className='' >{user.name}</h1>}

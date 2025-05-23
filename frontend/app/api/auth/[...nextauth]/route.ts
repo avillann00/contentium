@@ -1,6 +1,7 @@
-import NextAuth from 'next-auth'
-import GoogleProvider from 'next-auth/providers/google'
-import CredentialsProvider from 'next-auth/providers/credentials'
+import NextAuth from 'next-auth';
+import GoogleProvider from 'next-auth/providers/google';
+import CredentialsProvider from 'next-auth/providers/credentials';
+import * as jwt from 'jsonwebtoken'
 
 const handler = NextAuth({
   providers: [
@@ -24,10 +25,14 @@ const handler = NextAuth({
           }),
         })
 
-        const user = await res.json()
+        const data = await res.json();
 
-        if (res.ok && user) {
-          return user; 
+        if (res.ok && data) {
+          return {
+            ...data.user,
+            accessToken: data.access,
+            refreshToken: data.refresh,
+          };
         }
 
         return null
@@ -45,13 +50,37 @@ const handler = NextAuth({
 
   callbacks: {
     async jwt({ token, user }) {
-      if (user) token.user = user; 
+      if (user) {
+        const payload = {
+          id: user.id,
+          email: user.email,
+          is_pro: user.is_pro ?? false,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          username: user.username
+        }
+
+        token.accessToken = jwt.sign(payload, process.env.NEXTAUTH_SECRET!, {
+          algorithm: 'HS256',
+          expiresIn: '1h',
+        })
+      }
       return token
     },
     async session({ session, token }) {
-      if (token?.user) session.user = token.user;
+      session.user = {
+        ...session.user,
+        id: token.id,
+        email: token.email,
+        first_name: token.first_name,
+        last_name: token.last_name,
+        username: token.username,
+        is_pro: token.is_pro ?? false,
+      }
+      session.accessToken = token.accessToken
+
       return session
-    },
+    }
   },
 
   secret: process.env.NEXTAUTH_SECRET, 
