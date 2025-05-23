@@ -54,6 +54,10 @@ const handler = NextAuth({
         const payload = {
           id: user.id,
           email: user.email,
+          is_pro: user.is_pro ?? false,
+          first_name: user.first_name,
+          last_name: user.last_name,
+          username: user.username
         }
 
         token.accessToken = jwt.sign(payload, process.env.NEXTAUTH_SECRET!, {
@@ -64,7 +68,17 @@ const handler = NextAuth({
       return token
     },
     async session({ session, token }) {
+      session.user = {
+        ...session.user,
+        id: token.id,
+        email: token.email,
+        first_name: token.first_name,
+        last_name: token.last_name,
+        username: token.username,
+        is_pro: token.is_pro ?? false,
+      }
       session.accessToken = token.accessToken
+
       return session
     }
   },
