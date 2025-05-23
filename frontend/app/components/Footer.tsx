@@ -14,6 +14,10 @@ export default function Footer(){
         ·
         <button onClick={() => router.push('/terms')} className='mx-2 underline hover:text-blue-500'>
           Terms of Service
+        </button> 
+        ·
+        <button onClick={() => router.push('/contact')} className='mx-2 underline hover:text-blue-500'>
+          Contact
         </button>
       </p>
     </footer>
