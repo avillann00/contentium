@@ -1,8 +1,12 @@
 'use client'
 
+import LandingNav from '../components/LandingNav'
+
 export default function Contact(){
   return(
     <div className='w-screen min-h-screen bg-blue-50 flex flex-col items-center pt-20'>
+      <LandingNav />
+
       <section className='bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto text-black mt-10'>
         <h3 className='text-2xl font-semibold mb-6 text-center'>Contact</h3>
         <div className='grid sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center text-center'>
