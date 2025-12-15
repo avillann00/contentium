@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import axios from 'axios'
+import LandingNav from '../components/LandingNav'
 
 export default function Register() {
   const router = useRouter()
@@ -50,10 +51,12 @@ export default function Register() {
 
   return(
     <div className='w-screen h-screen bg-blue-50 p-10 flex flex-col items-center gap-4'>
-      <h1 className='mx-auto text-black text-3xl'>Register with your information then login.</h1>
+      <LandingNav />
+
+      <h1 className='mx-auto text-black text-3xl mt-5'>Register with your information then login.</h1>
 
       <form 
-        className='mx-auto border border-black max-w-3xl text-black flex flex-col rounded-lg shadow-md gap-4 bg-white p-10'
+        className='mx-auto border border-black max-w-3xl text-black flex flex-col rounded-lg shadow-md gap-4 bg-white p-8'
         onSubmit={handleSubmit}
       >
         <input

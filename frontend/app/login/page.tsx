@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { FaGoogle } from 'react-icons/fa'
 import { signIn } from 'next-auth/react'
+import LandingNav from '../components/LandingNav'
 
 export default function Login(){
   const [username, setUsername] = useState('')
@@ -34,9 +35,10 @@ export default function Login(){
   }
 
   return (
-    <div className='bg-blue-50 h-screen w-screen p-10'>
+    <div className='w-screen h-screen bg-blue-50 p-10 flex flex-col items-center gap-4'>
+      <LandingNav />
       
-      <div className='text-black text-center mx-auto'>
+      <div className='text-black text-center mx-auto mt-10'>
         <h1 className='text-2xl'>Welcome</h1>
         <h3 className='text-xl'>Login with your credentials or with Google.</h3>
       </div>

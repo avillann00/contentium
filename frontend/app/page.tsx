@@ -1,24 +1,14 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import LandingNav from './components/LandingNav'
 
 export default function Home(){
   const router = useRouter() 
 
   return(
     <div className='w-screen min-h-screen bg-blue-50 flex flex-col items-center pt-20'>
-      <nav className='h-16 px-4 fixed top-0 z-50 w-full shadow-md rounded-lg flex flex-row justify-between bg-purple-100 items-center'>
-        <image className='w-1/3' />
-        <h1 className='w-1/3 text-black text-center text-2xl' onClick={() => router.push('/')}>Contentium</h1>
-        <div className='w-1/3'>
-          <button 
-            className='text-black rounded-lg shadow-md border border-black p-2 bg-yellow-100' 
-            onClick={() => router.push('/login')}
-          >
-            Login
-          </button>
-        </div>
-      </nav>
+      <LandingNav />
 
       <section className='bg-white p-10 rounded-lg shadow-md max-w-4xl mx-auto text-black text-center'>
         <h1 className='text-3xl'>About</h1>
